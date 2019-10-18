@@ -1,25 +1,42 @@
 import React from 'react';
-import logo from './logo.svg';
+import { useFetch } from './hooks'
 import './App.css';
+import { decryptCaesar } from './decryptCaesar'
 
 function App() {
+    const [data, loading] = useFetch('https://koodihaaste-api.solidabis.com/bullshit'); 
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {loading ? (
+        "Loading...."
+      ) : (
+      <div className="container">
+        <div className="BullshitTexts">
+          <h1>Bullshit</h1>
+          <ul>
+            {data.bullshits.map((bullshit, i) => (
+              <li key={i}>
+                <p> {i}. {bullshit.message}</p>
+              </li>
+            ))
+          }
+          </ul>
+        </div>
+        <div className="NoBullShitTexts">
+          <h1>No Bullshit</h1>
+          <ul>
+            {data.bullshits.map((bullshit, i) => (
+              <li key={i}>
+                <p>{i}. {decryptCaesar(bullshit.message)}</p>
+              </li>
+            ))
+        }
+          </ul>
+      </div>
     </div>
+      )
+    } 
+  </div>
   );
 }
 
