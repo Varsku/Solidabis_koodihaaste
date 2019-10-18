@@ -4,6 +4,8 @@ Bit of training with new React features (hooks).
 
 Start with 'npm install' && 'npm start' from the commandline after the install has been done.
 
+All the code is inside the src folder.
+
 App fetches the bullshit sentences from the API provided and automatically starts to loop through them.
 
 There is custom dictionary implemented and if the decrypted sentence has 2 or more finnis words from there it will be returned.
